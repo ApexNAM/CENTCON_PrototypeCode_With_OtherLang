@@ -18,4 +18,5 @@ process as of late October to November 2022, and full-scale development is plann
 
 The game deadline is set for December 2023.
 
+#
 SkagoGames 2018-2022. made in Skago.
