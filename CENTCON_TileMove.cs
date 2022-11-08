@@ -1,3 +1,7 @@
+// CENTCON_TileMove.cs
+// Centcon의 맵을 회전하는 일명 "회전초밥 맵"의 프로토타입 소스코드.
+// C#으로도 프로토타입 프로그래밍입니다.
+
 using System;
 using System.Threading;
 
