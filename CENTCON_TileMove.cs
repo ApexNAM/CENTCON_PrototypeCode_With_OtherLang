@@ -1,64 +1,74 @@
 using System;
+using System.Threading;
 
 namespace ConsoleApp1
 {
     class Program
     {
-        
-        static void TileMoveLeft(string[] _Tile, int timeCount)
+        // 왼쪽으로 맵 이동 메소드
+        static void TileMoveLeft(string[] _Tile)
         {
-            for (int i = 0; i < timeCount; i++)
+            string _Tiled_Length = _Tile[1]; // 첫번째 타일맵 가져오기
+            
+            // 모든 값 불러오기
+            for (int j = 1; j < 5; j++)
             {
-                string _Tiled_Length = _Tile[1];
-
-                for (int j = 1; j < 5; j++)
-                {
-                    _Tile[j] = _Tile[j + 1];
-                }
-
-                _Tile[5] = _Tiled_Length;
+                // 왼쪽으로 이동
+                _Tile[j] = _Tile[j + 1];
             }
+            
+            // 마지막 비어진 값은 첫번째 타일맵으로 변경
+            _Tile[5] = _Tiled_Length;
         }
 
-        static void TileMoveRight(string[] _Tile, int timeCount)
+        // 오른쪽으로 맵 이동 메소드
+        static void TileMoveRight(string[] _Tile)
         {
-            for (int i = 0; i < timeCount; i++)
-            {
-                string _Tiled_Length = _Tile[5];
-                
-                for (int j = 5; j > 0; j--)
-                {
-                    _Tile[j] = _Tile[j - 1];
-                }
+            string _Tiled_Length = _Tile[5]; // 마지막 타일맵 가져오기
 
-                _Tile[1] = _Tiled_Length;
+            // 모든 값 불러오기
+            for (int j = 5; j > 0; j--)
+            {
+                // 오른쪽으로 이동
+                _Tile[j] = _Tile[j - 1];
+            }
+            
+            // 첫번째 비어진 값은 마지막 타일맵으로 변경
+            _Tile[1] = _Tiled_Length;
+        }
+        
+        // 맵 출력 메소드
+        static void TilePrint(string[] _Tile, int count, bool isRight)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                Thread.Sleep(500); // 500초간 대기
+
+                Console.WriteLine("\n");
+                
+                // 맵 출력
+                for (int j = 0; j < _Tile.Length; j++)
+                {
+                    Console.Write(_Tile[j]);
+                }
+                
+                // 오른쪽으로 이동 시, TileMoveRight 호출. 그렇지 않으면 TileMoveLeft 호출
+                if (isRight)
+                {
+                    TileMoveRight(_Tile);
+                }
+                else
+                {
+                    TileMoveLeft(_Tile);
+                }
             }
         }
 
         static void Main(string[] args)
         {
-            string[] _Tile = { "MIN", "WEAPON", "ATTACK", "NULL", "DEFENSE", "HEALTH", "MAX" };
-
-            for (int i = 0; i < _Tile.Length; i++)
-            {
-                Console.WriteLine(_Tile[i]);
-            }
-
-            Console.WriteLine("\n");
-            TileMoveLeft(_Tile, 3);
-
-            for (int i = 0; i < _Tile.Length; i++)
-            {
-                Console.WriteLine(_Tile[i]);
-            }
-
-            Console.WriteLine("\n");
-            TileMoveRight(_Tile, 3);
-
-            for (int i = 0; i < _Tile.Length; i++)
-            {
-                Console.WriteLine(_Tile[i]);
-            }
+            // 결과 출력
+            string[] _Tile = { "[MIN] ", "WEAPON ", "ATTACK ", "NULL ", "DEFENSE ", "HEALTH ", "[MAX]" };
+            TilePrint(_Tile, 3, true); // 3번 호출, 오른쪽으로 이동.
         }
     }
 }
