@@ -1,3 +1,9 @@
+// This code is saved as a record check due to the code reorganization.
+// There is a reorganized source code file.
+// Please refer to the CENTCON_indexDay2.ts source code.
+
+// SkagoGames 2022. made in Skago.
+
 let tiles : number[] = [0,1,2,3,4,5,6];
 let direction : string[] = ["Left","Right"];
 
